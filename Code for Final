@@ -1,0 +1,226 @@
+"""
+Author: Ezra Bonilla
+Date written: 03/11/2023
+Assignment:   Module8 Final
+Short Desc:   Ordering system for a burger resturant 
+"""
+
+import tkinter as tk
+from tkinter import ttk
+from tkinter import*
+from PIL import Image, ImageTk
+
+
+root  = Tk()
+
+root.title("The Club")
+
+#Style configurations
+s = ttk.Style()
+s.configure('MainFrame.TFrame', background = "#2B2B28")
+s.configure('MenuFrame.TFrame', background = "#4A4A48")
+s.configure('DisplayFrame.TFrame', background = "#0F1110")
+s.configure('OrderFrame.TFrame', background = "#B7C4CF")
+s.configure('DishFrame.TFrame', background = "#4A4A48", relief = "raised")
+s.configure('MenuLabel.TLabel',
+            background = "#0F1110",
+            font = ("Arial", 13, "italic"),
+            foreground = "white",
+            padding = (5, 5, 5, 5),
+            width = 21
+            )
+s.configure('orderTotalLabel.TLabel',
+            background = "#0F1110",
+            font = ("Arial", 10, "bold"),
+            foreground = "white",
+            padding = (2, 2, 2, 2),
+            anchor = "w"
+            )
+s.configure('orderTransaction.TLabel',
+            background = "#4A4A48",
+            font = ('Helvetica', 12),
+            foreground = "white",
+            wraplength = 170,
+            anchor = "nw",
+            padding = (3, 3, 3, 3)
+            )
+
+
+# Top Banner images
+LogoImageObject = Image.open("images/Logo.jpg").resize((130, 130))
+LogoImage = ImageTk.PhotoImage(LogoImageObject)
+
+TopBannerImageObject = Image.open("images/restaurant top banner.png").resize((800, 130))
+TopBannerImage = ImageTk.PhotoImage(TopBannerImageObject)
+
+# Menu images
+DefaultImageObject = Image.open("images/display-Default.png.png").resize((350,360))
+DefaultImage = ImageTk.PhotoImage(DefaultImageObject)
+
+cheeseburgerImageObject = Image.open("images//Cheeseburger.png").resize((350,334))
+cheeseburgerImage = ImageTk.PhotoImage(cheeseburgerImageObject)
+
+DoublecheeseburgerImageObject = Image.open("images//Double Cheeseburger.jpg").resize((350,334))
+DoublecheeseburgerImage = ImageTk.PhotoImage(DoublecheeseburgerImageObject)
+
+BaconcheeseburgerImageObject = Image.open("images//Bacon Cheeseburger.png").resize((350,334))
+BaconcheeseburgerImage = ImageTk.PhotoImage(BaconcheeseburgerImageObject)
+
+doublebaconcheeseBurgerImageObject = Image.open("images//Double Bacon Cheeseburger.png").resize((350,334))
+doublebaconcheeseBurgerImage = ImageTk.PhotoImage(doublebaconcheeseBurgerImageObject)
+
+frenchFriesImageObject = Image.open("images//French Fries.png").resize((350,334))
+frenchFriesImage = ImageTk.PhotoImage(frenchFriesImageObject)
+
+taterTotsImageObject = Image.open("images//Tater Tots.png").resize((350,334))
+taterTotsImage = ImageTk.PhotoImage(taterTotsImageObject)
+
+
+# Widgets
+
+# Section Frames
+mainFrame = ttk.Frame(root, width = 800, height = 580, style = 'MainFrame.TFrame')
+mainFrame.grid(row = 0, column = 0, sticky = "NSEW")
+
+topBannerFrame = ttk.Frame(mainFrame)
+topBannerFrame.grid(row = 0, column = 0, sticky = "NSEW", columnspan = 3)
+
+menuFrame = ttk.Frame(mainFrame, style = 'MenuFrame.TFrame')
+menuFrame.grid(row = 1, column = 0, padx = 3, pady = 3, sticky = "NSEW")
+
+displayFrame = ttk.Frame(mainFrame, style = "DisplayFrame.TFrame")
+displayFrame.grid(row = 1, column = 1, padx = 3, pady = 3, sticky = "NSEW")
+
+orderFrame = ttk.Frame(mainFrame, style = "OrderFrame.TFrame")
+orderFrame.grid(row = 1, column = 2, padx = 3, pady = 3, sticky = "NSEW")
+
+#Frames
+cheeseburgerFrame = ttk.Frame(menuFrame, style = "DishFrame.TFrame")
+cheeseburgerFrame.grid(row = 1, column = 0, sticky = "NSEW")
+
+doublecheeseBurgerFrame = ttk.Frame(menuFrame,style ="DishFrame.TFrame")
+doublecheeseBurgerFrame.grid(row = 2, column = 0, sticky ="NSEW")
+
+baconcheeseBurgerFrame = ttk.Frame(menuFrame, style ="DishFrame.TFrame")
+baconcheeseBurgerFrame.grid(row = 3, column = 0, sticky ="NSEW")
+
+doublebaconcheeseBurgerFrame = ttk.Frame(menuFrame, style ="DishFrame.TFrame")
+doublebaconcheeseBurgerFrame.grid(row = 4, column = 0, sticky ="NSEW")
+
+frenchFriesFrame = ttk.Frame(menuFrame, style ="DishFrame.TFrame")
+frenchFriesFrame.grid(row = 5, column = 0, sticky ="NSEW")
+
+taterTotsFrame = ttk.Frame(menuFrame, style ="DishFrame.TFrame")
+taterTotsFrame.grid(row = 6, column = 0, sticky ="NSEW")
+
+LogoLabel = ttk.Label(topBannerFrame, image = LogoImage, background = "#0F1110")
+LogoLabel.grid(row = 0, column = 0, sticky = "W")
+
+RestaurantBannerLabel = ttk.Label(topBannerFrame, image = TopBannerImage, background = "#0F1110")
+RestaurantBannerLabel.grid(row = 0, column = 1, sticky = "NSEW")
+
+
+#Menu Section
+MainMenuLabel = ttk.Label(menuFrame, text = "MENU", style = "MenuLabel.TLabel")
+MainMenuLabel.grid(row = 0, column = 0, sticky = "WE")
+MainMenuLabel.configure(
+    anchor = "center",
+    font = ("Helvetica", 14, "bold")
+)
+
+cheeseburgerLabel = ttk.Label(cheeseburgerFrame, text ="CheeseBurger $4.25", style ="MenuLabel.TLabel")
+cheeseburgerLabel.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "W")
+
+DoublecheeseburgerLabel = ttk.Label(doublecheeseBurgerFrame, text ="Double Cheeseburger $5.05", style ="MenuLabel.TLabel")
+DoublecheeseburgerLabel.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "W")
+
+baconcheeseburgerLabel = ttk.Label(baconcheeseBurgerFrame, text ="Bacon Cheeseburger  $5.67", style ="MenuLabel.TLabel")
+baconcheeseburgerLabel.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "W")
+
+doublebaconcheeseburgerLabel = ttk.Label(doublebaconcheeseBurgerFrame, text ="Double Bacon Cheeseburger $6.75", style ="MenuLabel.TLabel")
+doublebaconcheeseburgerLabel.grid(row = 0, column = 0, padx =10, pady = 10, sticky = "W")
+
+FrenchfriesLabel = ttk.Label(frenchFriesFrame, text ="French Fries $2.25", style ="MenuLabel.TLabel")
+FrenchfriesLabel.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "W")
+
+taterTotsLabel = ttk.Label(taterTotsFrame, text ="Tater Tots $2.75", style ="MenuLabel.TLabel")
+taterTotsLabel.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "W")
+
+#Buttons
+cheeseburgerDisplayButton = ttk.Button(cheeseburgerFrame, text ="Display")
+cheeseburgerDisplayButton.grid(row = 0, column = 1, padx = 10)
+
+doubleCheeseburgerDisplayButton = ttk.Button(doublecheeseBurgerFrame, text ="Display")
+doubleCheeseburgerDisplayButton.grid(row = 0, column = 1, padx = 10)
+
+baconcheeseBurgerDisplayButton = ttk.Button(baconcheeseBurgerFrame, text ="Display")
+baconcheeseBurgerDisplayButton.grid(row = 0, column = 1, padx = 10)
+
+doublebaconCheeseburgerDisplayButton = ttk.Button(doublebaconcheeseBurgerFrame, text ="Display")
+doublebaconCheeseburgerDisplayButton.grid(row = 0, column = 1, padx = 10)
+
+frenchfriesDisplayButton = ttk.Button(frenchFriesFrame, text ="Display")
+frenchfriesDisplayButton.grid(row = 0, column = 1, padx = 10)
+
+tatertotsDisplayButton = ttk.Button(taterTotsFrame, text ="Display")
+tatertotsDisplayButton.grid(row = 0, column = 1, padx = 10)
+
+
+#Order Section
+orderTitleLabel = ttk.Label(orderFrame, text = "ORDER")
+orderTitleLabel.configure(
+    foreground="white", background="black",
+    font=("Helvetica", 14, "bold"), anchor = "center",
+    padding = (5, 5, 5, 5),
+)
+orderTitleLabel.grid(row = 0, column = 0, sticky = "EW")
+
+orderIDLabel = ttk.Label(orderFrame, text = "ORDER ID : ")
+orderIDLabel.configure(
+    background = "black",
+    foreground = "white",
+    font = ("Helvetica", 11, "italic"),
+    anchor = "center",
+)
+orderIDLabel.grid(row = 1, column = 0, sticky = "EW", pady = 1)
+
+orderTransaction = ttk.Label(orderFrame, style = 'orderTransaction.TLabel')
+orderTransaction.grid(row = 2, column = 0, sticky = "NSEW")
+
+orderTotalLabel = ttk.Label(orderFrame, text = "TOTAL : 0$", style = "orderTotalLabel.TLabel")
+orderTotalLabel.grid(row = 3, column = 0, sticky = "EW")
+
+orderButton = ttk.Button(orderFrame, text = "ORDER")
+orderButton.grid(row = 4, column = 0, sticky = "EW")
+
+
+#Display Section
+displayLabel = ttk.Label(displayFrame, image = DefaultImage)
+displayLabel.grid(row = 0, column = 0 , sticky = "NSEW", columnspan = 2)
+displayLabel.configure(background = "#0F1110")
+
+addOrderButton = ttk.Button(displayFrame, text = "ADD TO ORDER")
+addOrderButton.grid(row = 1, column = 0, padx = 2, sticky = "NSEW")
+
+removeOrderButton = ttk.Button(displayFrame, text = "REMOVE")
+removeOrderButton.grid(row = 1, column = 1, padx = 2, sticky = "NSEW")
+
+
+
+
+#Grid
+mainFrame.columnconfigure(2, weight = 1)
+mainFrame.rowconfigure(1, weight = 1)
+menuFrame.columnconfigure(0, weight = 1)
+menuFrame.rowconfigure(1, weight = 1)
+menuFrame.rowconfigure(2, weight = 1)
+menuFrame.rowconfigure(3, weight = 1)
+menuFrame.rowconfigure(4, weight = 1)
+menuFrame.rowconfigure(5, weight = 1)
+menuFrame.rowconfigure(6, weight = 1)
+orderFrame.columnconfigure(0, weight = 1)
+orderFrame.rowconfigure(2, weight = 1)
+
+
+
+root.mainloop()
